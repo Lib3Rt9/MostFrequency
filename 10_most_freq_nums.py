@@ -115,8 +115,11 @@ def check_frequent_numbers():
 
     # print("10 most frequent of ALL NUMBERS (integer): ", int_counter, "\n")
 
+
+# CHEKING FREQUENT NUMBERS
 check_frequent_numbers()
 
+# re-checking or not?
 _continue = input("Enter 1 to check again, 0 to escape: ")
 
 while True:

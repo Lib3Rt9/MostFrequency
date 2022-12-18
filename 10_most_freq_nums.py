@@ -109,9 +109,9 @@ def check_frequent_numbers():
     # int_counter = int_counter.most_common(10)       # counter for list of integer numbers
 
     print()
-    print("10 most frequent of ALL NUMBERS (string): ", all_num_str_count, "\n")
-    print("10 most frequent of JACKPOT (string): ", jackpot_1_str_count, "\n")
-    print("10 most frequent of JACKPOT 2 (string): ", jackpot_2_str_count, "\n")
+    print("10 most frequent of ALL NUMBERS (string): \n", all_num_str_count, "\n")
+    print("10 most frequent of JACKPOT (string): \n", jackpot_1_str_count, "\n")
+    print("10 most frequent of JACKPOT 2 (string): \n", jackpot_2_str_count, "\n")
 
     # print("10 most frequent of ALL NUMBERS (integer): ", int_counter, "\n")
 

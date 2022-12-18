@@ -102,15 +102,15 @@ jackpot_2_str_count = Counter(jackpot_2)                 # all_num if the list o
 
 # int_counter = Counter(all_num_list)             # all_num_list if the list of number in form of INTEGER
 
-all_num_str_count = all_num_str_count.most_common(15)       # counter for list of numbers but in form of string
-jackpot_1_str_count = jackpot_1_str_count.most_common(15)       # counter for list of numbers but in form of string
-jackpot_2_str_count = jackpot_2_str_count.most_common(15)       # counter for list of numbers but in form of string
+all_num_str_count = all_num_str_count.most_common(20)       # counter for list of numbers but in form of string
+jackpot_1_str_count = jackpot_1_str_count.most_common(20)       # counter for list of numbers but in form of string
+jackpot_2_str_count = jackpot_2_str_count.most_common(20)       # counter for list of numbers but in form of string
 
 # int_counter = int_counter.most_common(10)       # counter for list of integer numbers
 
 print()
-print("10 most frequent of ALL NUMBERS (string): ", all_num_str_count, "\n")
-print("10 most frequent of JACKPOT (string): ", jackpot_1_str_count, "\n")
-print("10 most frequent of JACKPOT 2 (string): ", jackpot_2_str_count, "\n")
+print("10 most frequent of ALL NUMBERS (string): \n", all_num_str_count, "\n")
+print("10 most frequent of JACKPOT (string): \n", jackpot_1_str_count, "\n")
+print("10 most frequent of JACKPOT 2 (string): \n", jackpot_2_str_count, "\n")
 
 # print("10 most frequent of ALL NUMBERS (integer): ", int_counter, "\n")

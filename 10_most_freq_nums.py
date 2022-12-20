@@ -116,6 +116,20 @@ def check_frequent_numbers():
     # print("10 most frequent of ALL NUMBERS (integer): ", int_counter, "\n")
 
 
+    with open("result.txt", "a+") as result:
+        # Move read cursor to the start of file.
+        result.seek(0)
+
+        # If file is not empty then append '\n'
+        data_result = result.read(100)
+        if len(data_result) > 0:
+            result.write("\n")
+
+        # Append new content at the end of file
+        result.write(str(all_num_str_count))
+
+    result.close()
+
 # CHEKING FREQUENT NUMBERS
 check_frequent_numbers()
 

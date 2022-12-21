@@ -1,11 +1,27 @@
+# import libraries
 from collections import Counter
+# import sys
+# print(sys.version)
 
 
-quantity_of_number_in_consideration = 55
+# necessary parameters
+QUANTITY_OF_NUMBER_IN_CONSIDERATION = 55
+N_LATEST_LINES = 10
+
+
+# open number list file
+file = open("number_list.txt", "r")
+# lines = file.readlines()
+lines = [line for line in file.readlines() if line.strip()]
+# file.close()
+
+file = open("number_list.txt", "r")
+latest_lines = [l_lines for l_lines in file.readlines()[-N_LATEST_LINES:] if l_lines.strip()]
+file.close()
 
 
 # FUNCTIONS PART
-def new_num_to_list():
+def add_new_num_to_list():
     # add new numbers or not
     add_new_numbers = input("""Add number, [Y]es or [N]o? 
     Y: Yes - Add new numbers
@@ -23,9 +39,7 @@ def new_num_to_list():
         n5 = input("    Enter number #5: ")
         n6 = input("    Enter number #6: ")
         n7 = input("    Enter number #7: ")
-        
         new_num_set = n1 + " " + n2 + " " + n3 + " " + n4 + " " + n5 + " " + n6 + " " + n7
-
 
         # Open the file in append & read mode ('a+')
         with open("number_list.txt", "a+") as file:
@@ -48,100 +62,104 @@ def new_num_to_list():
 
 def check_frequent_numbers():
     # list of number in consideration
-    all_num = []
-    jackpot_1 = []
-    jackpot_2 = []
+    ALL_NUM = []
+    JACKPOT_1 = []
+    JACKPOT_2 = []
 
-    # add new numbers or not
-    new_num_to_list()
+    ALL_NUM_LATEST = []
+    JACKPOT_1_LATEST = []
+    JACKPOT_2_LATEST = []
     
-
-    # open number list file
-    file = open("number_list.txt", "r")
-    # lines = file.readlines()
-    lines = [line for line in file.readlines() if line.strip()]
-    file.close()
+    A_n = J_1 = J_2 = 0
+    
+    # add new numbers or not
+    add_new_num_to_list()
+    
 
     # w, h = [int(x) for x in next(file).split()] # read first line
 
     for x in lines:
-        all_num.extend(x.split())                  # all_num is the list of strings
-        jackpot_1.extend(x.split()[:-1])                  # jackpot_1 is the list of strings
-        jackpot_2.extend(x.split()[-1:])                  # jackpot_2 is the list of strings
+        ALL_NUM.extend(x.split())                  # ALL_NUM is the list of strings
+        JACKPOT_1.extend(x.split()[:-1])                  # JACKPOT_1 is the list of strings
+        JACKPOT_2.extend(x.split()[-1:])                  # JACKPOT_2 is the list of strings
 
+    for y in latest_lines:
+        ALL_NUM_LATEST.extend(y.split())           # ALL_NUM_LATEST is the list of strings
+        JACKPOT_1_LATEST.extend(y.split()[:-1])           # ALL_NUM_LATEST is the list of strings
+        JACKPOT_2_LATEST.extend(y.split()[-1:])           # ALL_NUM_LATEST is the list of strings
 
-    a = j1 = j2 = 0
-    len_all = len(all_num)
-    len_j1 = len(jackpot_1)
-    len_j2 = len(jackpot_2)
+  
+    len_all = len(ALL_NUM)
+    len_j1 = len(JACKPOT_1)
+    len_j2 = len(JACKPOT_2)
 
     # Iterating using while loop
-    while a < len_all:
-        all_num_int = all_num[a]
-        a += 1
+    while A_n < len_all:
+        ALL_NUM_int = ALL_NUM[A_n]
+        A_n += 1
 
-    while j1 < len_j1:
-        jackpot_1_int = jackpot_1[j1]
-        j1 += 1
+    while J_1 < len_j1:
+        JACKPOT_1_int = JACKPOT_1[J_1]
+        J_1 += 1
 
-    while j2 < len_j2:
-        jackpot_2_int = jackpot_2[j2]
-        j2 += 1
+    while J_2 < len_j2:
+        JACKPOT_2_int = JACKPOT_2[J_2]
+        J_2 += 1
     
 
     try:
-        all_num_list = [eval(i) for i in all_num_int]      # convert the list of STRING to the list of INTEGER
-        jackpot_1_list = [eval(i) for i in jackpot_1_int]      # convert the list of STRING to the list of INTEGER
-        jackpot_2_list = [eval(i) for i in jackpot_2_int]      # convert the list of STRING to the list of INTEGER
+        ALL_NUM_list = [eval(i) for i in ALL_NUM_int]      # convert the list of STRING to the list of INTEGER
+        JACKPOT_1_list = [eval(i) for i in JACKPOT_1_int]      # convert the list of STRING to the list of INTEGER
+        JACKPOT_2_list = [eval(i) for i in JACKPOT_2_int]      # convert the list of STRING to the list of INTEGER
     except IndexError:
         print("Exception: Index out of range")
 
 
-    # print("All number", all_num_list)
-    # print("Jackpot", jackpot_1_list)
-    # print("Jackpot 2nd", jackpot_2_list)
+    # print("All number", ALL_NUM_list)
+    # print("Jackpot", JACKPOT_1_list)
+    # print("Jackpot 2nd", JACKPOT_2_list)
 
     # print()
-    # print(all_num_list)
-    # print(all_num)
+    # print(ALL_NUM_list)
+    # print(ALL_NUM)
 
-    all_num_str_count = Counter(all_num)                 # all_num if the list of number in form of STRING
-    jackpot_1_str_count = Counter(jackpot_1)                 # all_num if the list of number in form of STRING
-    jackpot_2_str_count = Counter(jackpot_2)                 # all_num if the list of number in form of STRING
+    ALL_NUM_str_count = Counter(ALL_NUM)                 # ALL_NUM if the list of number in form of STRING
+    JACKPOT_1_str_count = Counter(JACKPOT_1)                 # ALL_NUM if the list of number in form of STRING
+    JACKPOT_2_str_count = Counter(JACKPOT_2)                 # ALL_NUM if the list of number in form of STRING
 
-    # int_counter = Counter(all_num_list)             # all_num_list if the list of number in form of INTEGER
+    # int_counter = Counter(ALL_NUM_list)             # ALL_NUM_list if the list of number in form of INTEGER
 
-    all_num_str_count = all_num_str_count.most_common(quantity_of_number_in_consideration)       # counter for list of numbers but in form of string
-    jackpot_1_str_count = jackpot_1_str_count.most_common(quantity_of_number_in_consideration)       # counter for list of numbers but in form of string
-    jackpot_2_str_count = jackpot_2_str_count.most_common(quantity_of_number_in_consideration)       # counter for list of numbers but in form of string
+    ALL_NUM_str_count = ALL_NUM_str_count.most_common(QUANTITY_OF_NUMBER_IN_CONSIDERATION)       # counter for list of numbers but in form of string
+    JACKPOT_1_str_count = JACKPOT_1_str_count.most_common(QUANTITY_OF_NUMBER_IN_CONSIDERATION)       # counter for list of numbers but in form of string
+    JACKPOT_2_str_count = JACKPOT_2_str_count.most_common(QUANTITY_OF_NUMBER_IN_CONSIDERATION)       # counter for list of numbers but in form of string
 
     # int_counter = int_counter.most_common(10)       # counter for list of integer numbers
 
     print()
-    print("\n" + str(quantity_of_number_in_consideration) + " most frequent of ALL NUMBERS (string): \n")
-    for key_all, val_all in all_num_str_count:
+    print("\n" + str(QUANTITY_OF_NUMBER_IN_CONSIDERATION) + " most frequent of ALL NUMBERS (string): \n")
+    for key_all, val_all in ALL_NUM_str_count:
         print(" ", key_all, " : ", val_all ,"times")
         # a = " ", key_all, " : ", val_all ,"times"
 
-    print("\n" + str(quantity_of_number_in_consideration) + " most frequent of JACKPOT (string): \n")
-    for key_jackpot, val_jackpot in jackpot_1_str_count:
+    print("\n" + str(QUANTITY_OF_NUMBER_IN_CONSIDERATION) + " most frequent of JACKPOT (string): \n")
+    for key_jackpot, val_jackpot in JACKPOT_1_str_count:
         
         print(" ", key_jackpot, " : ", val_jackpot, " times")
 
-    print("\n" + str(quantity_of_number_in_consideration) + " most frequent of JACKPOT 2 (string): \n")
-    for key_jackpot_2, val_jackpot_2 in jackpot_2_str_count:
-        print(" ", key_jackpot_2, " : ", val_jackpot_2, " times")
-            
-    # print(str(quantity_of_number_in_consideration) + " most frequent of ALL NUMBERS (string): \n", all_num_str_count, "\n")
-    # print(str(quantity_of_number_in_consideration) + " most frequent of JACKPOT (string): \n", jackpot_1_str_count, "\n")
-    # print(str(quantity_of_number_in_consideration) + " most frequent of JACKPOT 2 (string): \n", jackpot_2_str_count, "\n")
+    print("\n" + str(QUANTITY_OF_NUMBER_IN_CONSIDERATION) + " most frequent of JACKPOT 2 (string): \n")
+    for key_JACKPOT_2, val_JACKPOT_2 in JACKPOT_2_str_count:
+        print(" ", key_JACKPOT_2, " : ", val_JACKPOT_2, " times")
+
+    # print(str(QUANTITY_OF_NUMBER_IN_CONSIDERATION) + " most frequent of ALL NUMBERS (string): \n", ALL_NUM_str_count, "\n")
+    # print(str(QUANTITY_OF_NUMBER_IN_CONSIDERATION) + " most frequent of JACKPOT (string): \n", JACKPOT_1_str_count, "\n")
+    # print(str(QUANTITY_OF_NUMBER_IN_CONSIDERATION) + " most frequent of JACKPOT 2 (string): \n", JACKPOT_2_str_count, "\n")
 
     # print("10 most frequent of ALL NUMBERS (integer): ", int_counter, "\n")
     # result_exporting()
     
     # def result_exporting():
 
-    export_result = input("""Export result, [Y]es or [N]o?
+    export_result = input("""\nExport result, [Y]es or [N]o?
     [Y]es :  Export result to result.txt
     [N]o  :  Skip exporting result
 
@@ -158,13 +176,12 @@ def check_frequent_numbers():
                 result.write("\n")
 
             # Append new content at the end of file
-            result.write(str(all_num_str_count))
+            result.write(str(ALL_NUM_str_count))
 
         result.close()
     
     else:
         print("\n   No exportation!\n")
-
 
 
 # CHEKING FREQUENT NUMBERS

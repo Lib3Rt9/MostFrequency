@@ -4,20 +4,16 @@ from collections import Counter
 quantity_of_number_in_consideration = 55
 
 
-def check_frequent_numbers():
-    # list of number in consideration
-    all_num = []
-    jackpot_1 = []
-    jackpot_2 = []
-
-    # add numbers or not
-    add_or_not = input("""Add number, [Y]es or [N]o? 
+# FUNCTIONS PART
+def new_num_to_list():
+    # add new numbers or not
+    add_new_numbers = input("""Add number, [Y]es or [N]o? 
     Y: Yes - Add new numbers
     N: No - Skip adding new numbers
         
     Your choice: """)
 
-    if add_or_not == "Y":
+    if add_new_numbers == "Y":
         # input new numbers
         print("\nEnter the new number set:")
         n1 = input("    Enter number #1: ")
@@ -50,12 +46,21 @@ def check_frequent_numbers():
         print("Skip adding new numbers. Proceed to checking...")
 
 
+def check_frequent_numbers():
+    # list of number in consideration
+    all_num = []
+    jackpot_1 = []
+    jackpot_2 = []
+
+    # add new numbers or not
+    new_num_to_list()
+    
+
+    # open number list file
     file = open("number_list.txt", "r")
     # lines = file.readlines()
     lines = [line for line in file.readlines() if line.strip()]
     file.close()
-
-
 
     # w, h = [int(x) for x in next(file).split()] # read first line
 
@@ -113,11 +118,28 @@ def check_frequent_numbers():
     # int_counter = int_counter.most_common(10)       # counter for list of integer numbers
 
     print()
-    print(str(quantity_of_number_in_consideration) + " most frequent of ALL NUMBERS (string): \n", all_num_str_count, "\n")
-    print(str(quantity_of_number_in_consideration) + " most frequent of JACKPOT (string): \n", jackpot_1_str_count, "\n")
-    print(str(quantity_of_number_in_consideration) + " most frequent of JACKPOT 2 (string): \n", jackpot_2_str_count, "\n")
+    print("\n" + str(quantity_of_number_in_consideration) + " most frequent of ALL NUMBERS (string): \n")
+    for key_all, val_all in all_num_str_count:
+        print(" ", key_all, " : ", val_all ,"times")
+        # a = " ", key_all, " : ", val_all ,"times"
+
+    print("\n" + str(quantity_of_number_in_consideration) + " most frequent of JACKPOT (string): \n")
+    for key_jackpot, val_jackpot in jackpot_1_str_count:
+        
+        print(" ", key_jackpot, " : ", val_jackpot, " times")
+
+    print("\n" + str(quantity_of_number_in_consideration) + " most frequent of JACKPOT 2 (string): \n")
+    for key_jackpot_2, val_jackpot_2 in jackpot_2_str_count:
+        print(" ", key_jackpot_2, " : ", val_jackpot_2, " times")
+            
+    # print(str(quantity_of_number_in_consideration) + " most frequent of ALL NUMBERS (string): \n", all_num_str_count, "\n")
+    # print(str(quantity_of_number_in_consideration) + " most frequent of JACKPOT (string): \n", jackpot_1_str_count, "\n")
+    # print(str(quantity_of_number_in_consideration) + " most frequent of JACKPOT 2 (string): \n", jackpot_2_str_count, "\n")
 
     # print("10 most frequent of ALL NUMBERS (integer): ", int_counter, "\n")
+    # result_exporting()
+    
+    # def result_exporting():
 
     export_result = input("""Export result, [Y]es or [N]o?
     [Y]es :  Export result to result.txt
@@ -142,7 +164,8 @@ def check_frequent_numbers():
     
     else:
         print("\n   No exportation!\n")
-        
+
+
 
 # CHEKING FREQUENT NUMBERS
 check_frequent_numbers()

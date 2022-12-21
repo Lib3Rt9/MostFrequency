@@ -1,5 +1,9 @@
 from collections import Counter
 
+
+quantity_of_number_in_consideration = 55
+
+
 def check_frequent_numbers():
     # list of number in consideration
     all_num = []
@@ -7,11 +11,11 @@ def check_frequent_numbers():
     jackpot_2 = []
 
     # add numbers or not
-    add_or_not = input("""Add number, [Y]es or [N]o: 
-        Y: Yes - Add new numbers
-        N: No - Skip adding new numbers
+    add_or_not = input("""Add number, [Y]es or [N]o? 
+    Y: Yes - Add new numbers
+    N: No - Skip adding new numbers
         
-        Your choice: """)
+    Your choice: """)
 
     if add_or_not == "Y":
         # input new numbers
@@ -102,44 +106,58 @@ def check_frequent_numbers():
 
     # int_counter = Counter(all_num_list)             # all_num_list if the list of number in form of INTEGER
 
-    all_num_str_count = all_num_str_count.most_common(20)       # counter for list of numbers but in form of string
-    jackpot_1_str_count = jackpot_1_str_count.most_common(20)       # counter for list of numbers but in form of string
-    jackpot_2_str_count = jackpot_2_str_count.most_common(20)       # counter for list of numbers but in form of string
+    all_num_str_count = all_num_str_count.most_common(quantity_of_number_in_consideration)       # counter for list of numbers but in form of string
+    jackpot_1_str_count = jackpot_1_str_count.most_common(quantity_of_number_in_consideration)       # counter for list of numbers but in form of string
+    jackpot_2_str_count = jackpot_2_str_count.most_common(quantity_of_number_in_consideration)       # counter for list of numbers but in form of string
 
     # int_counter = int_counter.most_common(10)       # counter for list of integer numbers
 
     print()
-    print("20 most frequent of ALL NUMBERS (string): \n", all_num_str_count, "\n")
-    print("20 most frequent of JACKPOT (string): \n", jackpot_1_str_count, "\n")
-    print("20 most frequent of JACKPOT 2 (string): \n", jackpot_2_str_count, "\n")
+    print(str(quantity_of_number_in_consideration) + " most frequent of ALL NUMBERS (string): \n", all_num_str_count, "\n")
+    print(str(quantity_of_number_in_consideration) + " most frequent of JACKPOT (string): \n", jackpot_1_str_count, "\n")
+    print(str(quantity_of_number_in_consideration) + " most frequent of JACKPOT 2 (string): \n", jackpot_2_str_count, "\n")
 
     # print("10 most frequent of ALL NUMBERS (integer): ", int_counter, "\n")
 
+    export_result = input("""Export result, [Y]es or [N]o?
+    [Y]es :  Export result to result.txt
+    [N]o  :  Skip exporting result
 
-    with open("result.txt", "a+") as result:
-        # Move read cursor to the start of file.
-        result.seek(0)
+    Your choice: """)
+    
+    if export_result == "Y":
+        with open("result.txt", "a+") as result:
+            # Move read cursor to the start of file.
+            result.seek(0)
 
-        # If file is not empty then append '\n'
-        data_result = result.read(100)
-        if len(data_result) > 0:
-            result.write("\n")
+            # If file is not empty then append '\n'
+            data_result = result.read(100)
+            if len(data_result) > 0:
+                result.write("\n")
 
-        # Append new content at the end of file
-        result.write(str(all_num_str_count))
+            # Append new content at the end of file
+            result.write(str(all_num_str_count))
 
-    result.close()
+        result.close()
+    
+    else:
+        print("\n   No exportation!\n")
+        
 
 # CHEKING FREQUENT NUMBERS
 check_frequent_numbers()
 
 # re-checking or not?
-_continue = input("Enter 1 to check again, 0 to escape: ")
+_continue = input("""Check again, [Y]es or [N]o?
+    [Y]es :  Re-do the checking process
+    [N]o  :  Stop checking
+    
+    Your choice: """)
 
 while True:
-    if _continue == "1":
+    if _continue == "Y":
         check_frequent_numbers()
     else:
-        print("Exiting...")
+        print("\n   Exiting...\n")
         break
     _continue = input("Enter 1 to check again, 0 to escape: ")

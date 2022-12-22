@@ -124,8 +124,8 @@ def check_frequent_numbers():
     # print(ALL_NUM)
 
     ALL_NUM_str_count = Counter(ALL_NUM)                 # ALL_NUM if the list of number in form of STRING
-    JACKPOT_1_str_count = Counter(JACKPOT_1)                 # ALL_NUM if the list of number in form of STRING
-    JACKPOT_2_str_count = Counter(JACKPOT_2)                 # ALL_NUM if the list of number in form of STRING
+    JACKPOT_1_str_count = Counter(JACKPOT_1)                 # JACKPOT_1 if the list of number in form of STRING
+    JACKPOT_2_str_count = Counter(JACKPOT_2)                 # JACKPOT_2 if the list of number in form of STRING
 
     # int_counter = Counter(ALL_NUM_list)             # ALL_NUM_list if the list of number in form of INTEGER
 
@@ -143,7 +143,6 @@ def check_frequent_numbers():
 
     print("\n" + str(QUANTITY_OF_NUMBER_IN_CONSIDERATION) + " most frequent of JACKPOT (string): \n")
     for key_jackpot, val_jackpot in JACKPOT_1_str_count:
-        
         print(" ", key_jackpot, " : ", val_jackpot, " times")
 
     print("\n" + str(QUANTITY_OF_NUMBER_IN_CONSIDERATION) + " most frequent of JACKPOT 2 (string): \n")

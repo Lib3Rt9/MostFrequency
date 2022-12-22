@@ -12,7 +12,7 @@ N_LATEST_LINES = 10
 # open number list file
 file = open("number_list.txt", "r")
 # lines = file.readlines()
-lines = [line for line in file.readlines() if line.strip()]
+all_lines = [line for line in file.readlines() if line.strip()]
 # file.close()
 
 file = open("number_list.txt", "r")
@@ -24,8 +24,8 @@ file.close()
 def add_new_num_to_list():
     # add new numbers or not
     add_new_numbers = input("""Add number, [Y]es or [N]o? 
-    Y: Yes - Add new numbers
-    N: No - Skip adding new numbers
+    [Y]es   :    Yes - Add new numbers
+    else    :    No - Skip adding new numbers
         
     Your choice: """)
 
@@ -55,9 +55,12 @@ def add_new_num_to_list():
             file.write(new_num_set)
 
         file.close()
-
+        print("\n\n    New added number set:\n      ", new_num_set, "\n")
+        print("--------------------------------------------------------------------------------------\n")
+        
     else:
-        print("Skip adding new numbers. Proceed to checking...")
+        print("\nSkip adding new numbers. Proceed to checking...")
+        print("--------------------------------------------------------------------------------------\n")
 
 
 def check_frequent_numbers():
@@ -75,18 +78,35 @@ def check_frequent_numbers():
     # add new numbers or not
     add_new_num_to_list()
     
+        # w, h = [int(x) for x in next(file).split()] # read first line
 
-    # w, h = [int(x) for x in next(file).split()] # read first line
+    All_or_Latest_results = input("""Checking [A]ll results or """ + str(N_LATEST_LINES) + """ [L]atest results?
+    [L]atest    :     Latest results
+    else        :     All results
+
+    Your choice: """)
+    if All_or_Latest_results != "L":
+        lines = all_lines
+        ALL_NUM = ALL_NUM
+        JACKPOT_1 = JACKPOT_1
+        JACKPOT_2 = JACKPOT_2
+    else:
+        lines = latest_lines
+        ALL_NUM = ALL_NUM_LATEST
+        JACKPOT_1 = JACKPOT_1_LATEST
+        JACKPOT_2 = JACKPOT_2_LATEST
+
+    print("--------------------------------------------------------------------------------------")
 
     for x in lines:
         ALL_NUM.extend(x.split())                  # ALL_NUM is the list of strings
         JACKPOT_1.extend(x.split()[:-1])                  # JACKPOT_1 is the list of strings
         JACKPOT_2.extend(x.split()[-1:])                  # JACKPOT_2 is the list of strings
 
-    for y in latest_lines:
-        ALL_NUM_LATEST.extend(y.split())           # ALL_NUM_LATEST is the list of strings
-        JACKPOT_1_LATEST.extend(y.split()[:-1])           # ALL_NUM_LATEST is the list of strings
-        JACKPOT_2_LATEST.extend(y.split()[-1:])           # ALL_NUM_LATEST is the list of strings
+    # for y in latest_lines:
+    #     ALL_NUM_LATEST.extend(y.split())           # ALL_NUM_LATEST is the list of strings
+    #     JACKPOT_1_LATEST.extend(y.split()[:-1])           # ALL_NUM_LATEST is the list of strings
+    #     JACKPOT_2_LATEST.extend(y.split()[-1:])           # ALL_NUM_LATEST is the list of strings
 
   
     len_all = len(ALL_NUM)
@@ -135,16 +155,18 @@ def check_frequent_numbers():
 
     # int_counter = int_counter.most_common(10)       # counter for list of integer numbers
 
-    print()
+    print("--------------------------------------------------------------------------------------")
     print("\n" + str(QUANTITY_OF_NUMBER_IN_CONSIDERATION) + " most frequent of ALL NUMBERS (string): \n")
     for key_all, val_all in ALL_NUM_str_count:
         print(" ", key_all, " : ", val_all ,"times")
         # a = " ", key_all, " : ", val_all ,"times"
-
+    
+    print("-------------------------------------------")
     print("\n" + str(QUANTITY_OF_NUMBER_IN_CONSIDERATION) + " most frequent of JACKPOT (string): \n")
     for key_jackpot, val_jackpot in JACKPOT_1_str_count:
         print(" ", key_jackpot, " : ", val_jackpot, " times")
 
+    print("-------------------------------------------")
     print("\n" + str(QUANTITY_OF_NUMBER_IN_CONSIDERATION) + " most frequent of JACKPOT 2 (string): \n")
     for key_JACKPOT_2, val_JACKPOT_2 in JACKPOT_2_str_count:
         print(" ", key_JACKPOT_2, " : ", val_JACKPOT_2, " times")
@@ -158,12 +180,14 @@ def check_frequent_numbers():
     
     # def result_exporting():
 
+    print("--------------------------------------------------------------------------------------\n")
     export_result = input("""\nExport result, [Y]es or [N]o?
-    [Y]es :  Export result to result.txt
-    [N]o  :  Skip exporting result
+    [Y]es   :   Export result to result.txt
+    else    :   Skip exporting result
 
     Your choice: """)
     
+    # if export_result == {"Y" | "YES" | "YEs" | "YeS" | "yES" | "Yes" | "yEs" | "yeS" | "yes" | "y"}:
     if export_result == "Y":
         with open("result.txt", "a+") as result:
             # Move read cursor to the start of file.
@@ -178,9 +202,13 @@ def check_frequent_numbers():
             result.write(str(ALL_NUM_str_count))
 
         result.close()
+
+        print("\n Exported to "'"result.txt"'".\n")
+        print("--------------------------------------------------------------------------------------\n")
     
     else:
         print("\n   No exportation!\n")
+        print("--------------------------------------------------------------------------------------\n")
 
 
 # CHEKING FREQUENT NUMBERS
@@ -188,15 +216,21 @@ check_frequent_numbers()
 
 # re-checking or not?
 _continue = input("""Check again, [Y]es or [N]o?
-    [Y]es :  Re-do the checking process
-    [N]o  :  Stop checking
+    [Y]es   :   Re-do the checking process
+    else    :   Stop checking
     
     Your choice: """)
 
 while True:
     if _continue == "Y":
+        print("\n--------------------------------------------------------------------------------------")
+        print("--------------------------------------------------------------------------------------\n")
         check_frequent_numbers()
     else:
         print("\n   Exiting...\n")
         break
-    _continue = input("Enter 1 to check again, 0 to escape: ")
+    _continue = input("""Check again, [Y]es or [N]o?
+    [Y]es   :   Re-do the checking process
+    else    :   Stop checking
+    
+    Your choice: """)

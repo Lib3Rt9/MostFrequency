@@ -16,7 +16,7 @@ all_lines = [line for line in file.readlines() if line.strip()]
 # file.close()
 
 file = open("number_list.txt", "r")
-latest_lines = [l_lines for l_lines in file.readlines()[-N_LATEST_LINES:] if l_lines.strip()]
+latest_lines = [line for line in file.readlines()[-N_LATEST_LINES:] if line.strip()]
 file.close()
 
 
@@ -68,10 +68,6 @@ def check_frequent_numbers():
     ALL_NUM = []
     JACKPOT_1 = []
     JACKPOT_2 = []
-
-    ALL_NUM_LATEST = []
-    JACKPOT_1_LATEST = []
-    JACKPOT_2_LATEST = []
     
     A_n = J_1 = J_2 = 0
     
@@ -87,14 +83,8 @@ def check_frequent_numbers():
     Your choice: """)
     if All_or_Latest_results != "L":
         lines = all_lines
-        ALL_NUM = ALL_NUM
-        JACKPOT_1 = JACKPOT_1
-        JACKPOT_2 = JACKPOT_2
     else:
         lines = latest_lines
-        ALL_NUM = ALL_NUM_LATEST
-        JACKPOT_1 = JACKPOT_1_LATEST
-        JACKPOT_2 = JACKPOT_2_LATEST
 
     print("--------------------------------------------------------------------------------------")
 
@@ -102,11 +92,6 @@ def check_frequent_numbers():
         ALL_NUM.extend(x.split())                  # ALL_NUM is the list of strings
         JACKPOT_1.extend(x.split()[:-1])                  # JACKPOT_1 is the list of strings
         JACKPOT_2.extend(x.split()[-1:])                  # JACKPOT_2 is the list of strings
-
-    # for y in latest_lines:
-    #     ALL_NUM_LATEST.extend(y.split())           # ALL_NUM_LATEST is the list of strings
-    #     JACKPOT_1_LATEST.extend(y.split()[:-1])           # ALL_NUM_LATEST is the list of strings
-    #     JACKPOT_2_LATEST.extend(y.split()[-1:])           # ALL_NUM_LATEST is the list of strings
 
   
     len_all = len(ALL_NUM)

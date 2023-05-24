@@ -9,6 +9,7 @@ QUANTITY_OF_NUMBER_IN_CONSIDERATION = 45
 N_LATEST_LINES = 10
 
 NUMBER_LIST = "number_list_2.txt"
+RESULT_FILE = "result_2.txt"
 
 # open number list file
 file = open(NUMBER_LIST, "r")
@@ -31,7 +32,7 @@ file = open(NUMBER_LIST, "r")
 # latest_lines = [line for line in file.readlines()[-N_LATEST_LINES:] if line.strip()]
 latest_lines = all_lines[-N_LATEST_LINES:]
 file.close()
-print(latest_lines)
+# print(latest_lines)
 
 
 # FUNCTIONS PART
@@ -125,20 +126,19 @@ def check_frequent_numbers():
         # a = " ", key_all, " : ", val_all ,"times"
 
     print("--------------------------------------------------------------------------------------\n")
-    export_result()
 
     # return ALL_NUM_str_count
 
 def export_result():
-    export_result = input("""\nExport result, [Y]es or [N]o?
-    [Y]es   :   Export result to result.txt
+    export_result = input(f"""\nExport result, [Y]es or [N]o?
+    [Y]es   :   Export result to '{RESULT_FILE}'
     else    :   Skip exporting result
 
     Your choice: """)
     
     # if export_result == {"Y" | "YES" | "YEs" | "YeS" | "yES" | "Yes" | "yEs" | "yeS" | "yes" | "y"}:
     if export_result == "Y":
-        with open("result.txt", "a+") as result:
+        with open(RESULT_FILE, "a+") as result:
             # Move read cursor to the start of file.
             result.seek(0)
 
@@ -152,7 +152,7 @@ def export_result():
 
         result.close()
 
-        print("\n Exported to "'"result.txt"'".\n")
+        print("\n Exported to '{}'.\n".format(RESULT_FILE))
         print("--------------------------------------------------------------------------------------\n")
     
     else:
@@ -161,6 +161,7 @@ def export_result():
 
 # CHEKING FREQUENT NUMBERS
 check_frequent_numbers()
+export_result()
 
 # re-checking or not?
 _continue = input("""Check again, [Y]es or [N]o?

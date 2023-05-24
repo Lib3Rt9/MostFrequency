@@ -10,12 +10,12 @@ N_LATEST_LINES = 10
 
 
 # open number list file
-file = open("number_list.txt", "r")
+file = open("number_list_1.txt", "r")
 # lines = file.readlines()
 all_lines = [line for line in file.readlines() if line.strip()]
 # file.close()
 
-file = open("number_list.txt", "r")
+file = open("number_list_1.txt", "r")
 latest_lines = [line for line in file.readlines()[-N_LATEST_LINES:] if line.strip()]
 file.close()
 
@@ -42,7 +42,7 @@ def add_new_num_to_list():
         new_num_set = n1 + " " + n2 + " " + n3 + " " + n4 + " " + n5 + " " + n6 + " " + n7
 
         # Open the file in append & read mode ('a+')
-        with open("number_list.txt", "a+") as file:
+        with open("number_list_1.txt", "a+") as file:
             # Move read cursor to the start of file.
             file.seek(0)
 

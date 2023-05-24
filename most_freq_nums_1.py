@@ -174,7 +174,7 @@ def check_frequent_numbers():
     
     # if export_result == {"Y" | "YES" | "YEs" | "YeS" | "yES" | "Yes" | "yEs" | "yeS" | "yes" | "y"}:
     if export_result == "Y":
-        with open("result.txt", "a+") as result:
+        with open("result_1.txt", "a+") as result:
             # Move read cursor to the start of file.
             result.seek(0)
 
